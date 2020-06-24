@@ -8,18 +8,11 @@ namespace jatek_pont_net.Domain.Repositories
 {
     interface IRepository<TEntity> where TEntity : class
     {
-        Task GetById(int id);
+        Task<TEntity> GetById(int id);
 
         Task<List<TEntity>> GetAll();
 
-        Task<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        Task<List<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
 
-        Task Add(TEntity entity);
-
-        Task Edit(TEntity entity);
-
-        Task Remove(TEntity entity);
-
-        
     }
 }
