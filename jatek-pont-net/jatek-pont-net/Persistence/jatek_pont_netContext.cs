@@ -1,5 +1,5 @@
 ﻿using System;
-using jatek_pont_net.Models;
+using jatek_pont_net.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
