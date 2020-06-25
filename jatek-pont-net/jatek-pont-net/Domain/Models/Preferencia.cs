@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace jatek_pont_net.Models
+namespace jatek_pont_net.Domain.Models
 {
     public partial class Preferencia
     {
