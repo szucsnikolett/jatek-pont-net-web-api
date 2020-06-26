@@ -10,18 +10,63 @@ using Microsoft.EntityFrameworkCore;
 
 namespace jatek_pont_net.Persistence.Repositories
 {
-    internal class ArRepository : Repository<Ar>, IArRepository
+    public class ArRepository : Repository<Ar>, IArRepository
     {
         public ArRepository(jatek_pont_netContext context) : base(context) { }
 
         public async void Remove(Ar ar)
         {
+            SqlParameter idParam = new SqlParameter()
+            {
+                ParameterName = "@ID",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = ar.Id
+            };
+            SqlParameter termekParam = new SqlParameter()
+            {
+                ParameterName = "@TERMEK",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = ar.Termek
+            };
+            SqlParameter ervKezdParam = new SqlParameter()
+            {
+                ParameterName = "@ERV_KEZD",
+                SqlDbType = SqlDbType.DateTime,
+                Direction = ParameterDirection.Input,
+                Value = ar.ErvKezd
+            };
+            SqlParameter arParam = new SqlParameter()
+            {
+                ParameterName = "@AR",
+                SqlDbType = SqlDbType.Decimal,
+                Direction = ParameterDirection.Input,
+                Value = ar.Ar1
+            };
+            SqlParameter mukodesParam = new SqlParameter()
+            {
+                ParameterName = "@MUKODES",
+                SqlDbType = SqlDbType.NVarChar,
+                Direction = ParameterDirection.Input,
+                Value = "D"
+            };
+            SqlParameter idOutParam = new SqlParameter()
+            {
+                ParameterName = "@ID_OUT",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Output
+            };
             object[] param = new object[]
             {
-                new SqlParameter("@ID", ar.Id), 
-                new SqlParameter("@MUKODES", "D") 
+                idParam,
+                termekParam,
+                ervKezdParam,
+                arParam,
+                mukodesParam,
+                idOutParam
             };
-            await _context.Database.ExecuteSqlRawAsync("AR_IUD @ID, @MUKODES", param);
+            await _context.Database.ExecuteSqlRawAsync("AR_IUD @ID, @TERMEK, @ERV_KEZD, @AR, @MUKODES, @ID_OUT" , param);
         }
 
         public Task<Ar>Add(Ar entity)
