@@ -12,13 +12,13 @@ using jatek_pont_net.Persistence.Repositories;
 
 namespace jatek_pont_net.Domain.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    internal class ArsController : ControllerBase
+    public class ArController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public ArsController(IUnitOfWork unitOfWork)
+        public ArController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

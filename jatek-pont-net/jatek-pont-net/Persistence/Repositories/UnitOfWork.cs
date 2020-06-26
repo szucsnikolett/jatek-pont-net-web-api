@@ -6,7 +6,7 @@ using jatek_pont_net.Domain.Repositories;
 
 namespace jatek_pont_net.Persistence.Repositories
 {
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly jatek_pont_netContext _context;
         public IArRepository ArRepository { get; private set; }
